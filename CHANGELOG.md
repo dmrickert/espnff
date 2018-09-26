@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 ### Patched
+- Fixed issue where inactive members from past seasons messed up
+power rankings
+
+### Patched
 - Fixed output for possibility the attribute doesn't exist in the API
 
 ### Other
