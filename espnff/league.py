@@ -11,7 +11,7 @@ from .exception import (PrivateLeagueException,
 
 
 class League(object):
-    '''Creates a League instance for Public ESPN league'''
+    '''Creates a League instance for ESPN league'''
     def __init__(self, league_id, year, espn_s2=None, swid=None):
         self.league_id = league_id
         self.year = year
@@ -87,10 +87,19 @@ class League(object):
         teams_sorted = sorted(self.teams, key=lambda x: x.team_id,
                               reverse=False)
 
+        # deleted members from previous years still hold a team_id, so
+        #    create a new mapping of team id to dominance matrix row/column
+        matrix_position_map = {}
+        count = 0
+        for team in teams_sorted:
+            matrix_position_map[team.team_id] = count
+            count += 1
+
+        # loop through our teams and create a matrix of wins
         for team in teams_sorted:
             wins = [0]*32
             for mov, opponent in zip(team.mov[:week], team.schedule[:week]):
-                opp = int(opponent.team_id)-1
+                opp = matrix_position_map[opponent.team_id]
                 if mov > 0:
                     wins[opp] += 1
             win_matrix.append(wins)

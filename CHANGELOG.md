@@ -3,10 +3,14 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 ### Patched
-- Quick fix for `trade_deadline` attribute in `Settings` class. Will search for better alternative.
+- Fixed issue where inactive members from past seasons messed up
+power rankings
+
+### Patched
+- Fixed output for possibility the attribute doesn't exist in the API
 
 ### Other
-- Reorganized structure of `espnff` package for future development
+- Reorganized structure of `espnff` package and tests for future development
 
 ## [1.3.1] - 2017-07-24
 ### Added
